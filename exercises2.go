@@ -3,20 +3,36 @@ package main
 import "fmt"
 
 func main() {
-	f := 1.11
-	fmt.Println(f)
-	intConvert := int(f)
-	fmt.Println(intConvert)
+	l := []int{100, 300, 23, 11, 23, 2, 4, 6, 4}
 
-	s := []int{1, 2, 5, 6, 2, 3, 1}
-	fmt.Println(s[2:4])
+	a := 0
+	for i, value := range l {
+		if i == 0 {
+			a = value
+			continue
+		}
 
-
-	m := map[string]int{"Mike":20,
-		"Nancy":24,
-		"Messi":30,
+		if a > value {
+			a = value
+		}
 	}
-	fmt.Printf("%T %v", m, m)
+	fmt.Println(a)
+
+	m := map[string]int{
+		"apple":  200,
+		"banana": 300,
+		"grapes": 150,
+		"orange": 80,
+		"papaya": 500,
+		"kiwi":   90,
+	}
+
+	sum := 0
+	for _, value := range m{
+		sum += value
+	}
+	fmt.Println(sum)
+
 }
 
 
