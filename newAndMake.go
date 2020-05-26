@@ -17,6 +17,21 @@ func main() {
 	// *pointer2++
 	fmt.Println(pointer2)
 
+	fmt.Println("makeについて確認")
 
+	// pointer型を返すためには、newを使う
+	// そうでないものを返すにはmakeを使う
+	s := make([]int, 0)
+	fmt.Printf("%T %v\n", s, s)
+	m := make(map[string]int)
+	fmt.Printf("%T\n", m)
+	var p *int = new(int)
+	fmt.Printf("%T\n", p)
+
+	channel := make(chan int)
+	fmt.Printf("%T\n", channel)
+
+	var st = new(struct{})
+	fmt.Printf("%T\n", st)
 }
 
