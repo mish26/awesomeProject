@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"regexp"
+	"sort"
 	"time"
 )
 
@@ -24,8 +25,34 @@ func main() {
 	fs := r2.FindStringSubmatch("/view/tes")
 	fmt.Println(fs[0], fs[1], fs[2])
 
+	fmt.Println("---about sort---")
+	intSlice := []int{5,6,10,100,1,5,4,32}
+	stringSlice:= []string{"j","a","f"}
+	p := []struct{
+		Name string
+		Age int
+	}{
+		{"Nancy",20},
+		{"Nike",21},
+		{"Dik",29},
+		{"Bob",5},
+	}
+	fmt.Println(intSlice,stringSlice,p)
 
+	sort.Ints(intSlice)
+	fmt.Println(intSlice)
+	sort.Strings(stringSlice)
+	fmt.Println(stringSlice)
 
+	sort.Slice(p,
+		func(i, j int) bool {
+			return p[i].Name < p[j].Name
+		})
+	sort.Slice(p,
+		func(i, j int) bool {
+			return p[i].Age < p[j].Age
+		})
+	fmt.Println(p)
 }
 
 
