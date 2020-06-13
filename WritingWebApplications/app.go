@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"log"
+	"net/http"
 )
 
 type Page struct {
@@ -18,7 +20,6 @@ func (p *Page) save() error {
 func loadPage(title string) (*Page, error) {
 
 	filename :=  title + ".txt"
-//	filename := "WritingWebApplications/" + title + ".txt"
 	body, err := ioutil.ReadFile(filename)
 	if err != nil {
 		return nil, err
@@ -26,10 +27,14 @@ func loadPage(title string) (*Page, error) {
 	return &Page{Title: title, Body: body}, nil
 }
 
-func main(){
-	p1 := &Page{Title: "test", Body: []byte("this is a sample page.")}
-	p1.save()
+func viewHandler(w http.ResponseWriter, r *http.Request)  {
+	title := r.URL.Path[len("/view/"):]
+	p, _ := loadPage(title)
+	fmt.Fprintf(w, "<h1>%s</h1><div>%s</div>", p.Title, p.Body)
+}
 
-	p2, _ := loadPage(p1.Title)
-	fmt.Println(string(p2.Body))
+func main(){
+	http.HandleFunc("/view/", viewHandler)
+	log.Fatal(http.ListenAndServe(":8081", nil))
+
 }
