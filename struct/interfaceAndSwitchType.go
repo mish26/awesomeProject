@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 )
 
 type ItemSelectOption struct {
@@ -22,6 +23,9 @@ type ItemSelectOptionMakerId struct {
 }
 
 func NewItemSelectOptionMakerId(makerId string) *ItemSelectOptionMakerId {
+	if makerId == "" {
+		log.Fatal("makerId is empty")
+	}
 	return &ItemSelectOptionMakerId{makerId: makerId}
 }
 
@@ -34,6 +38,9 @@ type ItemSelectOptionBrandId struct {
 }
 
 func NewItemSelectOptionBrandId(brandId string) *ItemSelectOptionBrandId {
+	if brandId == "" {
+		log.Fatal("brandId is empty")
+	}
 	return &ItemSelectOptionBrandId{brandId: brandId}
 }
 
@@ -50,6 +57,10 @@ func main() {
 	var o2 ItemSelectOptionGetter =  NewItemSelectOptionBrandId("brand12345")
 	var option2 ItemSelectOption = NewItemSelectOption(o2, "o2")
 	fmt.Println(option2.GetId())
+
+	var og3 ItemSelectOptionGetter =  NewItemSelectOptionBrandId("")
+	var option3 ItemSelectOption = NewItemSelectOption(og3, "o2")
+	fmt.Println(option3.GetId())
 
 	checkType(option)
 	checkType(option2)
