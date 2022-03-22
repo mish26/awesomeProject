@@ -38,6 +38,12 @@ func foo()  {
 }
 
 func main()  {
+	fmt.Println(2/3)
+	fmt.Println(float64(2)/float64(3))
+	fmt.Println(float32(2)/float32(3))
+	k := 10 / 3.0
+	fmt.Printf("%.2f", k)
+
 	// parenthesisで囲める
 	var (
 		i int = 1

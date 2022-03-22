@@ -1,7 +1,7 @@
-package main
+package packageSample
 
 import (
-	"awesomeProject/package/test"
+	"awesomeProject/packageSample/test"
 	"fmt"
 )
 
