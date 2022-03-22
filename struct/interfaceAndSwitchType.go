@@ -1,16 +1,17 @@
 package main
 
 import (
+	"awesomeProject/packageSample"
 	"fmt"
 	"log"
 )
 
 type ItemSelectOption struct {
 	ItemSelectOptionGetter
-	order          string
+	order packageSample.Order
 }
 
-func NewItemSelectOption(optionId ItemSelectOptionGetter, order string) ItemSelectOption {
+func NewItemSelectOption(optionId ItemSelectOptionGetter, order packageSample.Order) ItemSelectOption {
 	return ItemSelectOption{optionId, order}
 }
 
@@ -64,6 +65,8 @@ func main() {
 
 	checkType(option)
 	checkType(option2)
+	test(packageSample.Summer)
+
 }
 
 func checkType(og ItemSelectOption) {
@@ -77,4 +80,6 @@ func checkType(og ItemSelectOption) {
 	}
 }
 
-
+func test(season packageSample.Season)  {
+	fmt.Println(season)
+}
